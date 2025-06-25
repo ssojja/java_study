@@ -17,7 +17,7 @@ public class VariableScopeTest {
 		// main method 지역 변수
 		int number = 100;
 		String str = new String("홍길동");
-		String str2;	// Scope은 선언할 때 생성됨
+		String str2;	// 선언, Scope은 선언할 때 생성됨
 		
 		{
 			int number2 = 200;
