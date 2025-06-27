@@ -71,7 +71,6 @@ public class Exercise {
 			}
 			
 			// 별출력
-//			for(int k = 1; k <= 2*i-1; k++) {	// 열
 			for(int k = 1 ; k <= 2*i-1; k++) {
 				System.out.print("*");
 				
