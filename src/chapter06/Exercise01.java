@@ -49,29 +49,46 @@ public class Exercise01 {
 			switch (menu) {
 				case 1:	
 					boolean orderFlag = true;
+					
+					if(count == MAX_SIZE) {
+						System.out.println("=> 주문은 최대 " + MAX_SIZE + "개까지 가능합니다.");
+						orderFlag = false;
+					}
+					
 					while(orderFlag) {
 						System.out.println("*******************************************");
 						System.out.println("\t1. 햄버거(🍔):100\t2. 피자(🍕):200");
 						System.out.println("\t3. 라멘(🍜):300\t4. 샐러드(🥗):400");
 						System.out.println("*******************************************");
 						System.out.print("주문메뉴 선택(숫자로) > ");
-						int menuNo = scan.nextInt();
+						
 						if(scan.hasNextInt()) {
+							int menuNo = scan.nextInt();
 							if(menuNo >=1 && menuNo <= 4 ) {
 								orderMenuList[count] = menuList[menuNo-1];
 								orderPriceList[count] = priceList[menuNo-1];
 								count++;
+								System.out.println("=> 주문이 완료되었습니다. 메뉴는 " + menuList[menuNo-1] + "입니다." );
+							} else {
+								System.out.println("=> 메뉴 준비중입니다.");
 							}
-							orderFlag = false;
+							
+							if(count == MAX_SIZE) {
+								orderFlag = false;
+								System.out.println("=> 주문은 최대 " + MAX_SIZE + "개까지 가능합니다.");
+							} else {
+								System.out.print("계속 주문 하시겠습니까? (계속:아무키나 누르세요, 종료:n) > ");
+								if(scan.next().equals("n")){
+									orderFlag = false;								
+								}								
+							}
 							
 						} else {
 							System.out.println("=> 올바른 입력이 아닙니다.");
+							scan.next();
 						}
 						
-						
 					} // while - orderFlag
-					
-					
 					
 					break;
 				case 2:					
