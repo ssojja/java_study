@@ -15,5 +15,5 @@ public class Student {
 	
 	public int getAvg() {
 		return (kor + eng + math)/3;
-	}
+	} 
 }
