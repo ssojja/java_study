@@ -6,9 +6,9 @@ public class ScoreMgmSystemTest {
 		ScoreMgmSystem tjsms = new ScoreMgmSystem();
 		Student student = new Student();
 		
-		tjsms.insert();
-		tjsms.show();
-		System.out.println("-- 프로그램 종료 --");
+		tjsms.showMenu();	// 메뉴정보
+		
+		System.out.println("-- main 종료 --");
 	}
 
 }

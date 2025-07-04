@@ -20,6 +20,7 @@ public class ScoreTestVer3 {
 	public static void main(String[] args) {
 		System.out.println("-------------------------------------------");
 		System.out.println("더조은 고등학교 성적관리 프로그램");
+		System.out.println("-------------------------------------------");
 		System.out.println("1. 학생 등록");
 		System.out.println("2. 학생 리스트 출력");
 		System.out.println("3. 학생 성적 검색");
