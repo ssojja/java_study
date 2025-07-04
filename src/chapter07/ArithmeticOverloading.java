@@ -5,6 +5,7 @@ public class ArithmeticOverloading {
 	// Constructor
 	// Method
 	// add() 메소드의 오버로딩
+	
 	public int add(int x, int y) {
 		return x + y;
 	}
@@ -39,7 +40,6 @@ public class ArithmeticOverloading {
 		return sum;
 	}
 	
-	
-	
+
 	
 } // class
