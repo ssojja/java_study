@@ -1,4 +1,4 @@
-package chapter07;
+package drink;
 
 public class DrinkOrderSystemTest {
 

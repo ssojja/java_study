@@ -13,8 +13,7 @@ public class Animal {
 	
 	// method
 	public void sleep() {
-		String date = "20250703"; 
-		System.out.println(date + " 잠을 잔다.");
+		System.out.println(name + " 잠을 잔다.");
 	}
 
 }

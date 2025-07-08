@@ -1,139 +1,47 @@
-package chapter07;
+package lunch;
 
 import java.util.Scanner;
 
 public class LunchOrderSystemOOP {
 	// Field
-	Scanner scan = new Scanner(System.in); 
-	String[] lunchMenuNames = {"햄버거(🍔)", "피자(🍕)", "라멘(🍜)", "샐러드(🥗)"};
+	Scanner scan;
+	LunchOrderMenuManager menuManager;
+	String[] lunchMenuNames = {"햄버거(🍔)", "피자(🍕)", "라멘(🍜)", "샐러드(🥗)"};	// 선언과 할당이 동시에 주워져야함
 	int[] lunchMenuPrice = {100, 200, 300, 400};
-	LunchMenu[] lunchMenuList = new LunchMenu[4];	// 주문할 메뉴 : LunchMenu
-	LunchOrderItem[] orderItemList = new LunchOrderItem[4];
+	LunchMenu[] lunchMenuList; // = new LunchMenu[4];  , 크기만 선언
+	LunchOrderItem[] orderItemList; // = new LunchOrderItem[4];
 	LunchPaymentItem paymentItem;
 	int orderCount = 0;
 	int amount = 0; // 결제 금액 - 사용자 입력
 	int change = 0; // 잔돈
+	String title;
 	
 	// 시스템 메뉴 : MainMenu
 	
 	// Constructor
+	public LunchOrderSystemOOP() {	// 호출할 때 초기화
+		scan = new Scanner(System.in);
+		// class LunchOrderSystemOOP가 주소정보를 넘길때 this사용
+		menuManager = new LunchOrderMenuManager(this);
+		lunchMenuList = new LunchMenu[4];
+		orderItemList = new LunchOrderItem[4];
+		
+		menuManager.createLunchMenu();	// 런치 메뉴 생성 메소드 호출
+	}
+
+	public LunchOrderSystemOOP(String title) {	// 호출할 때 초기화
+		this.title = title; 
+		scan = new Scanner(System.in);
+		menuManager = new LunchOrderMenuManager(this);
+		lunchMenuList = new LunchMenu[4];
+		orderItemList = new LunchOrderItem[4];
+		 
+		menuManager.createLunchMenu();	// 런치 메뉴 생성 메소드 호출
+		menuManager.showMainMenu();
+	}
+	
 	// Method
-	/*
-	 *	런치메뉴 생성 
-	 * */
-	public void createLunchMenu() {
-		for(int i = 0; i < lunchMenuNames.length; i++) {
-			// for문 밖에 존재할 경우 객체가 한번만 생성되어 모두 동일한 주소 정보와 마지막 값이 리스트에 저장됨
-			LunchMenu menu = new LunchMenu();
-			
-			menu.no = i+1;
-			menu.name = lunchMenuNames[i];
-			menu.price = lunchMenuPrice[i];
-			
-			lunchMenuList[i] = menu; // lunch 메뉴 주소값
-		}
-	}
 	
-	/*
-	 * 런치메뉴 출력
-	 * */
-	public void showLunchMenu() {
-	
-		System.out.println("---------------------");
-		System.out.println("=>  LunchMenuList ");
-		System.out.println("---------------------");
-		for(LunchMenu menu : lunchMenuList) {
-			System.out.print(menu.no + ". ");
-			System.out.print(menu.name + "\t");
-			System.out.print(menu.price + "\n");
-		}
-		System.out.println("---------------------");
-		selectLunchMenu();
-	}
-	
-	/*
-	 * 런치메뉴 선택
-	 * */
-	public void selectLunchMenu() {
-		System.out.print("주문메뉴(숫자) > ");
-		
-		if(scan.hasNextInt()) {
-			lunchMenuCheck(scan.nextInt());
-		} else {
-			System.out.println("=> 입력된 값이 올바르지 않습니다. 다시 입력해주세요.");
-			scan.next(); // 잘못된 값을 우선적으로 받아야함
-			selectLunchMenu();
-		}	
-	}
-	
-	/*
-	 * 메인메뉴 출력
-	 */
-	public void showMainMenu() {
-		System.out.println("*******************************************");
-		System.out.println("\tWelcome to Food Market!!!");
-		System.out.println("*******************************************");
-		System.out.println("\t 1. 음식 주문");
-		System.out.println("\t 2. 주문 내역");
-		System.out.println("\t 3. 음식 결제");
-		System.out.println("\t 4. 결제 내역");
-		System.out.println("\t 9. 프로그램 종료");
-		System.out.println("*******************************************");
-		System.out.println("\tFood Mart에 오신것을 환영합니다!");
-		System.out.println("*******************************************");
-		createLunchMenu();
-		selectMainMenu();
-	} // showMainMenu method
-	
-	/*
-	 * 메인메뉴 선택
-	 * */
-	public void selectMainMenu() {
-		System.out.print("메인메뉴(숫자) > ");
-		
-		if(scan.hasNextInt()) {
-			mainMenuCheck(scan.nextInt());
-		} else {
-			System.out.println("=> 입력된 값이 올바르지 않습니다. 다시 입력해주세요.");
-			scan.next(); // 잘못된 값을 우선적으로 받아야함
-			selectMainMenu();
-		}
-		
-	}
-	
-	/*
-	 * 메인메뉴 체크
-	 * */
-	public void mainMenuCheck(int mainMenu) {
-		switch (mainMenu) {
-			case 1: showLunchMenu();	break;
-			case 2: orderList();		break;
-			case 3: payment();			break;
-			case 4: paymentList();		break;
-			case 9: 
-				System.out.println("-- 음식 주문 시스템을 종료합니다. --");
-				System.exit(0);
-				break;
-			default: 
-				System.out.println("=> 메뉴 준비중입니다.");
-				showMainMenu();
-				break;
-		}
-	}
-	
-	/*
-	 * 런치메뉴 체크
-	 * */
-	public void lunchMenuCheck(int lunchMenu) {
-		// lunchMenu : 1 ~ 4 값이면 => 주문가능, 다른 번호: 메뉴 준비중입니다. 다시 입력하세요.
-		if(lunchMenu >= 1 && lunchMenu <= 4) {
-			// 주문 진행
-			order(lunchMenu);
-		} else {
-			System.out.println("=> 런치 메뉴 준비중입니다. 다시 입력해주세요.");
-			showLunchMenu();
-		}
-	}
 	
 	/*
 	 * 주문아이템의 인덱스 확인
@@ -181,7 +89,7 @@ public class LunchOrderSystemOOP {
 				break;
 			}
 		}
-		showMainMenu();
+		menuManager.showMainMenu();
 		System.out.println("=> 주문이 완료되었습니다.");
 	}
 	
@@ -208,7 +116,7 @@ public class LunchOrderSystemOOP {
 			}
 			System.out.println("----------------------------------------");
 		}
-		showMainMenu();	
+		menuManager.showMainMenu();	
 	}
 	
 	/*
@@ -264,7 +172,7 @@ public class LunchOrderSystemOOP {
 				scan.next();
 			} // if
 		}
-		showMainMenu();
+		menuManager.showMainMenu();
 	}
 	
 	/*
@@ -279,13 +187,13 @@ public class LunchOrderSystemOOP {
 			System.out.println("----------------------------------------");
 			System.out.println("주문명\t\t결제금액\t총입금액\t잔돈");
 			System.out.println("----------------------------------------");
-			System.out.print(paymentItem.name + "\t");
+			System.out.print(paymentItem.name + "\t\t");
 			System.out.print(paymentItem.totalPayment + "\t");
 			System.out.print(paymentItem.amount + "\t");
 			System.out.print(paymentItem.change + "\t\n");	
 			System.out.println("----------------------------------------");
 		}
-		showMainMenu();
+		menuManager.showMainMenu();
 	}
 	
 } // class
