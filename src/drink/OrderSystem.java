@@ -2,6 +2,8 @@ package drink;
 
 import java.util.Scanner;
 
+//import commons.Menu;
+
 public class OrderSystem {
 	// Field
 	String title;
@@ -38,15 +40,15 @@ public class OrderSystem {
 	}
 	
 	public void showMenu() {
-		System.out.println("------------------------------");
+		System.out.println("-------------------------------");
 		System.out.println("   ☕🍵🥤 " + title +" Coffee Menu");
-		System.out.println("------------------------------");
+		System.out.println("-------------------------------");
 		for(Menu menu : menuList) {
 			System.out.print(menu.no + ".\t");
 			System.out.print(menu.name + "\t");
-			System.out.print(String.format("%,d", menu.price) + "\n");
+			System.out.print(String.format("%,d", menu.price) + "원\n");
 		}
-		System.out.println("------------------------------");
+		System.out.println("-------------------------------");
 		
 		/*
 		 for(int i = 0; i <menuList.length; i++) {

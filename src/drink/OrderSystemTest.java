@@ -6,6 +6,4 @@ public class OrderSystemTest {
 		// TODO Auto-generated method stub
 		new OrderSystem();
 	}
-	
-
 }

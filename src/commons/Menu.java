@@ -1,4 +1,4 @@
-package drink;
+package commons;
 
 public class Menu {
 	// Field
