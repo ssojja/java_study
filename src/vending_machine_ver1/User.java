@@ -12,6 +12,7 @@ import java.util.Scanner;
 	메뉴 : Menu - 번호, 이름, 가격
 	휴게소 : RestArea - 사용자, 자판기, 자판기 메뉴를 보여준다.
 */
+
 public class User {
 	// Field
 	String name;
@@ -28,14 +29,6 @@ public class User {
 	}
 	
 	// Method
-	public boolean coinCheck(int coin) {
-		boolean result = false;
-		if(coin == 100 || coin == 500) {
-			result = true;
-		}
-		return result;
-	}
-
 	/*
 	 * 동전 입력!
 	 * */
@@ -44,15 +37,9 @@ public class User {
 		System.out.print("["+ name +"] 동전입력 > ");
 		if(scan.hasNextInt()) {
 			// 동전 체크 : 100원, 500원만 입력 가능
-			int coin = scan.nextInt();
-			
+			int coin = scan.nextInt();			
 			resultCoin = coin;
 
-//			if(coinCheck(coin)) {
-//				resultCoin = coin;
-//			} else {
-//				System.out.println("=> 100원 또는 500원만 투입 가능합니다.");
-//			}
 		} else {
 			System.out.println("=> 올바르지 않은 값입니다. 다시 입력해주세요.");
 			scan.next();
