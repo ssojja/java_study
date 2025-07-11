@@ -14,6 +14,7 @@ public class BankMan {
 	public BankMan() {
 		this("원빈");
 	}
+	
 	public BankMan(String name) {
 		this.name = name;
 		accountList = createAccountList();
@@ -26,6 +27,8 @@ public class BankMan {
 	 * */
 	public void checkPaper(AccountPaperVo accountPaper, Customer customer) {
 		this.customer = customer;
+		this.accountPaper = accountPaper;
+		
 		System.out.println("[은행직원 : " + name + "] 출금 용지 정보를 확인하는 중입니다..");
 		if(accountPaper.getName() == null) {
 			System.out.println("[은행직원 : " + name + "] 이름을 입력해주세요.");
@@ -35,6 +38,10 @@ public class BankMan {
 			System.out.println("고객명 ===> " + customer.getName());
 		} else if(accountPaper.getAccountNumber() == null) {
 			System.out.println("[은행직원 : " + name + "] 계좌 번호를 입력해주세요.");
+			System.out.print("[고객 : " + customer.getAccountNumber() + "] 계좌를 입력 > ");
+			String account = customer.getScan().next();
+			customer.setAccountNumber(account);
+			System.out.println("고객명 ===> " + customer.getName());
 		} else if(accountPaper.getPassword() == null) {
 			System.out.println("[은행직원 : " + name + "] 패스워드를 입력해주세요.");
 		} else if(accountPaper.getMoney() == 0) {
@@ -72,10 +79,10 @@ public class BankMan {
 	 * */
 	public void showAccountList() {
 		System.out.println("=====================================");
-		System.out.println("\t KB은행 고객 리스트");
+		System.out.println("\t KB은행 고객 리스트(" + accountList.length + ")명");
 		System.out.println("=====================================");
 		for(int i = 0; i < accountList.length; i++) {
-			AccountVo account = accountList[i];
+			AccountVo account = accountList[i]; // 리스트 
 			System.out.print((i+1) + ".\t");
 			System.out.print(account.getName() + "\t");
 			System.out.print(account.getAccountNumber() + "\t");

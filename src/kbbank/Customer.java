@@ -39,8 +39,6 @@ public class Customer {
 		this.accountPaper.setMoney(this.money);
 	}
 
-	
-	
 	public String getName() {
 		return name;
 	}

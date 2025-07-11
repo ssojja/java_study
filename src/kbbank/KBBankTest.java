@@ -8,10 +8,11 @@ public class KBBankTest {
 	public static void main(String[] args) {
 		// 비치되어져 있는 용지를 사용하는 장소 : 은행
 		// 입출금 용지 한장 비치됨
-		AccountPaperVo accountPaper = AccountPaperVo.getInstance();
+		AccountPaperVo accountPaper = AccountPaperVo.getInstance();	// 싱글톤
+		
 		System.out.println("1 ----> " + accountPaper.getName());
 		BankMan staffPark = new BankMan("박보검");
-		staffPark = new BankMan();
+	//	staffPark = new BankMan();
 		staffPark.showAccountList();
 		
 		Customer hong = new Customer(null, "kb-1234", "1234", 100);
