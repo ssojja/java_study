@@ -6,6 +6,7 @@ public class AccountVo {
 	private String password;
 	private int balance;
 	
+	public AccountVo() {}
 	
 	public String getName() {
 		return name;
@@ -32,6 +33,4 @@ public class AccountVo {
 		this.balance = balance;
 	}
 	
-	
-
 }
