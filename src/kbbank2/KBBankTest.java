@@ -14,10 +14,10 @@ public class KBBankTest {
 		// 은행직원 -> 고객정보 리스트 출력
 //		staffPark.getKbsystem().showAccountList();
 		
-		// 고객 클랙스 생성
+		// 고객 클래스 생성
 		Customer hong = new Customer("홍길동", "kb-1234", null , 0);
-		boolean validateFlag = true;
 		hong.setAccountPaper(accountPaper);
+		boolean validateFlag = true;
 //		AccountPaperVo.showInfo();
 		
 		// 은행 직원이 고객의 용지를 받는다.
