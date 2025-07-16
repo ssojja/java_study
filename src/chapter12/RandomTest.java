@@ -10,5 +10,4 @@ public class RandomTest {
 		System.out.println(random.nextFloat());
 		System.out.println(random.nextDouble());
 	}
-
 }
