@@ -9,5 +9,6 @@ public class RandomTest {
 		System.out.println(random.nextInt());
 		System.out.println(random.nextFloat());
 		System.out.println(random.nextDouble());
+		System.out.println((int)random.nextLong(1000,9999));
 	}
 }
