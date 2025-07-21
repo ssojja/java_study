@@ -46,7 +46,14 @@ public class AccountPaperVo {
 		this.money = money;
 	}
 	
-	
+	public void showInfo() {
+		System.out.println("=====================================");
+		System.out.print(accountPaper.getName() + "\t");
+		System.out.print(accountPaper.getAccountNumber() + "\t");
+		System.out.print(accountPaper.getPassword() + "\t");
+		System.out.print(accountPaper.getMoney() + "\n");
+		System.out.println("=====================================");
+	}
 	
 
 }

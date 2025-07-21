@@ -16,11 +16,26 @@ public class KBBankTest {
 		AccountPaperVo accountPaper = AccountPaperVo.getInstance();
 		hong.setAccountPaper(accountPaper);
 		// 홍길동이 작성한 내용 보이기
-		// 은행 직원이 고객의 용지를 받는다.		
+//		accountPaper.showInfo();
+		// 은행 직원이 고객의 용지를 받는다.
+		staffPark.setAccountPaper(hong.getAccountPaper());
 		// 고객에게 전달받은 출금용지에 빈 값이 있는지 쳌
+		staffPark.validateChcek();		
+		
+		boolean validateFlag = true;
+	
 		// 출금용지 최종 값 확인		
+		while(validateFlag) {
+			if(staffPark.validateChcek(hong.answer(staffPark.checkResult))) {
+				validateFlag = false;
+			}
+		}
+		
 		// 값 체크 후 출금 진행
+		staffPark.processWithdrawal();
+		
 		// 은행시스템을 이용하여 잔액을 확인!
+		kbsystem.confirmBalance(hong.getAccountPaper());	// 은행시스템을 이용하여 잔액을 확인!
 
 	}
 

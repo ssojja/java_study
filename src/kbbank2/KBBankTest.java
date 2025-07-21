@@ -1,5 +1,6 @@
 package kbbank2;
 
+
 public class KBBankTest {
 	
 	public static void main(String[] args) {
@@ -22,7 +23,7 @@ public class KBBankTest {
 		
 		// 은행 직원이 고객의 용지를 받는다.
 		staffPark.setAccountPaper(hong.getAccountPaper());
-		staffPark.validateChcek(); 	// 고객에게 전달받은 출금용지에 빈 값이 있는지 쳌
+//		staffPark.validateChcek(); 	// 고객에게 전달받은 출금용지에 빈 값이 있는지 쳌
 //		hong.answer(staffPark.checkResult);
 //		AccountPaperVo.showInfo();
 		while(validateFlag) {

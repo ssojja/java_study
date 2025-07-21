@@ -1,5 +1,6 @@
 package kbpractice;
 
+
 public class BankSystem {
 	String name; // 은행 이름
 	AccountVo[] accountList;
@@ -43,5 +44,53 @@ public class BankSystem {
 		}
 		System.out.println("=============================");
 	}
+	
+	public int searchAccount(AccountPaperVo accountPaper) {
+		int resultIdx = -1;
+		for(int i = 0; i < accountList.length; i++) {
+			AccountVo account = accountList[i];
+			if(account.getAccountNumber().equals(accountPaper.getAccountNumber())
+				&& account.getPassword().equals(accountPaper.getPassword())) {
+					resultIdx = i;
+				break;	// for문 빠져나오기 ~
+			}
 
+		}
+		return resultIdx;		
+	}
+	
+	/**
+	 * 잔액 조회
+	 * */
+	public void confirmBalance(AccountPaperVo accountPaper) {
+		int resultIdx = -1;
+		
+		for(int i = 0; i < accountList.length; i++) {
+			AccountVo account = accountList[i];
+			
+			if(account.getAccountNumber().equals(accountPaper.getAccountNumber())
+			&& account.getPassword().equals(accountPaper.getPassword())) {
+				resultIdx = i;
+				break;	// for문 빠져나오기 ~
+			}
+		}
+		
+		if(resultIdx != -1) {
+			System.out.println("=====================================");
+//			AccountVo account = accountList[resultIdx];
+//			System.out.print(account.getName() + "\t");
+//			System.out.print(account.getAccountNumber() + "\t");
+//			System.out.print(account.getPassword() + "\t");
+//			System.out.print(account.getBalance() + "\n");
+			System.out.print(accountList[resultIdx].getName() + "\t");
+			System.out.print(accountList[resultIdx].getAccountNumber() + "\t");
+			System.out.print(accountList[resultIdx].getPassword() + "\t");
+			System.out.print(accountList[resultIdx].getBalance() + "\n");
+			System.out.println("=====================================");
+			System.out.println("[BankSystem] 이용해주셔서 감사합니다.");
+		} else {
+			System.out.println("[BankSystem] 일치하는 고객정보가 없습니다.");
+		}
+	}
+	
 }

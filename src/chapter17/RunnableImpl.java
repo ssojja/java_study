@@ -16,6 +16,4 @@ public class RunnableImpl implements Runnable{
 			}
 		}
 	}
-	
-	
 }
