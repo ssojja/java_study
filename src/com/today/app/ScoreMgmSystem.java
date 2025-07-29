@@ -21,11 +21,11 @@ public class ScoreMgmSystem {
 	public ScoreMgmSystem() {
 		scan = new Scanner(System.in);
 		service = new ScoreServiceImpl(this);
-		showInfo();
+		showMenu();
 		selectMenu();
 	}
 
-	public void showInfo() {
+	public void showMenu() {
 		System.out.println("===== 학생 성적 관리 시스템 =====");
 		System.out.println("전체 학생 수 : " + service.getCount());
 		System.out.println("\t1. 등록");
