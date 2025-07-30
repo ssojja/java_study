@@ -6,9 +6,9 @@ import com.today.model.Member;
 
 public interface ScoreRepository {
 	
-	public boolean insert(Member member);
-	public int getCount();
-	public List<Member> findAll();
-	public Member find(String no);
+	boolean insert(Member member);
+	int getCount();
+	List<Member> findAll();
+	Member find(String no);
 
 }
