@@ -13,7 +13,7 @@ public class EmployeeTest {
 		insertVo.setGender("M");
 		insertVo.setDeptId("MKT");
 		insertVo.setPhone("010-1234-8888");
-		insertVo.setEmail("PARK@test.com");
+		insertVo.setEmail("PARK@example.co.kr");
 		
 		if(dao.insert(insertVo)) {
 			List<EmployeeVo> list = dao.getList();
@@ -24,7 +24,7 @@ public class EmployeeTest {
 				System.out.print(employee.getDeptId() + "\t");
 				System.out.print(employee.getHireDate() + "\t");
 				System.out.print(employee.getPhone() + "\t");
-				System.out.print(employee.getEmail() + "\t");
+				System.out.print(employee.getEmail() + "\t\t");
 				System.out.print(employee.getSalary() + "\n");
 			});
 			
