@@ -26,7 +26,7 @@ public class ScoreServiceImpl implements ScoreService{
 		List memberInfo = new ArrayList();
 		Random rd = new Random();
 		// 학번 생성
-		String no = "2015-" + rd.nextLong(1000, 9999); // 1000 ~ 9999
+		String no = "2025-" + rd.nextLong(1000, 9999); // 1000 ~ 9999
 		memberInfo.add(no);
 		for(int i = 0; i < labels.length; i++) {
 			System.out.print(labels[i] + " > ");

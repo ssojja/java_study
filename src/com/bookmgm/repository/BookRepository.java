@@ -3,7 +3,7 @@ package com.bookmgm.repository;
 import java.util.List;
 
 import com.bookmgm.model.Book;
-import com.scoremgm.model.Member;
+import com.scoremgm.model.MemberVo;
 
 public interface BookRepository {
 	boolean insert(Book book);

@@ -28,6 +28,9 @@ public class ScoreRepositoryImpl implements ScoreRepository{
 		
 		if(no != null) {
 		for(int i = 0; i < storage.size(); i++) {
+			System.out.println("storage.get(i).getNo() => " + storage.get(i).getNo());
+			System.out.println("no => " + no);
+			System.out.println(storage.get(i).getNo().equals(no));
 			if(storage.get(i).getNo().equals(no)) {
 				member = storage.get(i);
 			}
