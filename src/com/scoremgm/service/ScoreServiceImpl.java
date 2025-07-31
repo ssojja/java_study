@@ -30,7 +30,6 @@ public class ScoreServiceImpl implements ScoreService {
 		return repository.getCount();
 	}
 	
-	
 	/**
 	 * 등록
 	 * */
