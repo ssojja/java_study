@@ -32,26 +32,26 @@ create table book_aladin(
 );
 
 delimiter $$
-create trigger trg_book_aladin_bid
-before insert on book_aladin
+create trigger trg_book_yes24_bid
+before insert on book_yes24
 for each row
 begin
 declare max_code int;
 
 select ifnull(max(cast(right(bid, 3) as unsigned)), 0)
 into max_code
-from book_tj;
+from book_yes24;
 
 set new.bid = concat('B', LPAD(max_code+1 ,3, '0'));
 
 end $$
 delimiter ;
 
-drop trigger trg_book_aladin_bid;
+drop trigger trg_book_yes24_bid;
 select * from information_schema.triggers;
 
 select * from book_tj;
-insert into book_tj(title, author, price, isbn, bdate) values(?, ?, ?, (rand() * 10000, now()));
+
 
 insert into book_tj(title, author, price, isbn, bdate) values('타이틀', '작가', 50000, rand() * 10000, now());
 
@@ -61,11 +61,6 @@ delete from book_tj where bid = 'B001';
 select 
 row_number() over() as rno,
 bid, title, author, price, isbn, bdate from book_tj;
-
-
-select count(*) from book_tj;
-
-
 
 select bid, title, author, price, isbn, bdate 
 					from book_tj 
@@ -78,14 +73,3 @@ show processlist;						-- 활성중인 커넥션
 show variables like 'max_connections';	-- 최대 접속 가능 커넥션 수
 
 select * from book_yes24;
-
-
-
-
-
-
-
-
-
-
-

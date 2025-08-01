@@ -2,7 +2,6 @@ package com.scoremgm.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 import com.scoremgm.app.ScoreMgmSystem;
@@ -39,7 +38,6 @@ public class ScoreServiceImpl implements ScoreService {
 		
 		// Member 생성
 		MemberVo member = new MemberVo();
-//		member.setNo((String)memberInfo.get(0));
 		member.setName((String)memberInfo.get(0));
 		member.setDepartment((String)memberInfo.get(1));
 		member.setKor((int)memberInfo.get(2));
@@ -187,6 +185,7 @@ public class ScoreServiceImpl implements ScoreService {
 				System.out.print(member.getEng() + " \t");
 				System.out.print(member.getMath() + " \n");
 				System.out.println("=============================================");
+				System.out.println("=> 업데이트 성공!!");
 			} else {
 				System.out.println("=> 검색된 학생 정보 없음");
 			}
