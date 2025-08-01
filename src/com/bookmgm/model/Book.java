@@ -8,7 +8,6 @@ public class Book {
 	private int isbn;		//
 	private String bdate;	//
 
-	
 //	public Book() {}
 
 	public String getBid() {
