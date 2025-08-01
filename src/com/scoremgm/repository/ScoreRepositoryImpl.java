@@ -1,7 +1,6 @@
 package com.scoremgm.repository;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.scoremgm.model.MemberVo;
@@ -38,18 +37,22 @@ public class ScoreRepositoryImpl extends DBconn
 		return rows;
 	}
 	
-//	@Override
-//	public void remove(String no) {
-//		no = "2025-"+ no;
-//		Iterator<MemberVo> ie = storage.iterator();
-//		while(ie.hasNext()) {
-//			MemberVo member = ie.next();
-//			if(member.getNo().equals(no)) {
-//				ie.remove();
-//				break;
-//			}
-//		}
-//	}
+	@Override
+	public int remove(String mid) {
+		int rows = 0;
+		String sql = " delete from score_member where mid = ?";
+		
+		try {
+			getPreparedStatement(sql);
+			pstmt.setString(1, mid);
+			rows = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return rows;
+	}
 	
 	
 	
@@ -135,17 +138,25 @@ public class ScoreRepositoryImpl extends DBconn
 		return member;
 	};
 	
-//	@Override
-//	public void update(MemberVo member) {
-//		int idx = -1;
-//		for(int i = 0; i < storage.size(); i++) {
-//			MemberVo m = storage.get(i);
-//			if(m.getNo().equals(member.getNo())) {
-//				idx = i;
-//				break;
-//			}
-//		}
-//		
-//		storage.set(idx, member);
-//	};
+	@Override
+	public int update(MemberVo member) {
+		int rows = 0;
+		String sql = """
+					update score_member set kor = ?, eng = ?, math = ? where mid = ?
+				""";
+		
+		try {
+			getPreparedStatement(sql);
+			pstmt.setInt(1, member.getKor());
+			pstmt.setInt(2, member.getEng());
+			pstmt.setInt(3, member.getMath());
+			pstmt.setString(4, member.getMid());
+			rows = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return rows;
+	};
 }

@@ -1,19 +1,38 @@
 package com.bookmgm.model;
 
 public class Book {
-	private String id; 		// 도서번호
+	private String bid; 	// 도서번호
 	private String name;	// 도서이름
 	private String author;	// 저자이름
 	private int price;		// 금액
+	private int isbn;		//
+	private String bdate;	//
+
 	
-	public Book() {}
-	
-	public String getId() {
-		return id;
+//	public Book() {}
+
+	public String getBid() {
+		return bid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+
+	public int getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(int isbn) {
+		this.isbn = isbn;
+	}
+
+	public String getBdate() {
+		return bdate;
+	}
+
+	public void setBdate(String bdate) {
+		this.bdate = bdate;
 	}
 
 	public String getName() {
