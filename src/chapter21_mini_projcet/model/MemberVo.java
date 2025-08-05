@@ -1,7 +1,7 @@
 package chapter21_mini_projcet.model;
 
 public class MemberVo {
-	private String mid, name, phone, addr;
+	private String mid, name, phone, addr, mdate;
 
 	public String getMid() {
 		return mid;
@@ -35,4 +35,13 @@ public class MemberVo {
 		this.addr = addr;
 	}
 
+	public String getMdate() {
+		return mdate;
+	}
+
+	public void setMdate(String mdate) {
+		this.mdate = mdate;
+	}
+	
+	
 }

@@ -4,8 +4,6 @@ public class CartVo {
 	private String orderId, bid, mid, orderDate, delivery;
 	private int cnt, totPrice = 0;
 	
-	
-
 	public int getCnt() {
 		return cnt;
 	}

@@ -1,7 +1,5 @@
 package chapter21_mini_projcet.service;
 
-import chapter21_mini_projcet.model.MemberVo;
-
 public interface ShoppingService {
 	void info();
 	void register();
@@ -11,4 +9,5 @@ public interface ShoppingService {
 	void delete_all();
 	void receipt();
 	void exit();
+	void menuMemberAdd();
 }

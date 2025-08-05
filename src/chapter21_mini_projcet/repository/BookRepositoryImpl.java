@@ -29,16 +29,18 @@ public class BookRepositoryImpl extends DBconn
 				getPreparedStatement(sql);
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
-					
-				while(rs.next()) {
-					book = new BookVo();
-					book.setBid(rs.getString(1));
-					book.setTitle(rs.getString(2));
-					book.setAuthor(rs.getString(3));
-					book.setPrice(rs.getInt(4));
-					book.setCategory(rs.getString(5));
-					book.setContent(rs.getString(6));
-					book.setBdate(rs.getString(7));
+				
+				if(rs != null) {
+					while(rs.next()) {
+						book = new BookVo();
+						book.setBid(rs.getString(1));
+						book.setTitle(rs.getString(2));
+						book.setAuthor(rs.getString(3));
+						book.setPrice(rs.getInt(4));
+						book.setCategory(rs.getString(5));
+						book.setContent(rs.getString(6));
+						book.setBdate(rs.getString(7));
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -74,6 +76,30 @@ public class BookRepositoryImpl extends DBconn
 			e.printStackTrace();
 		}
 		return list;
-	};
+	}
+
+	@Override
+	public int update(BookVo entity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String findId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int remove(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int removeAll() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

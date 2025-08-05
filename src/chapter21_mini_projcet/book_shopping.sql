@@ -23,7 +23,8 @@ create table book_market_member(
 	mid		char(5)		primary key,
     name 	varchar(10)	not null,
     phone	char(11) not null,
-    addr	varchar(50)
+    addr	varchar(50),
+    mdate	datetime
 );
 
 insert into book_market_member(mid, name, phone) values('M0001', '김소현', '01012341234');
@@ -39,18 +40,23 @@ select * from book_market_member;
 -- book_market_cart 테이블 생성
 create table book_market_cart(
 	order_id	int auto_increment primary key,	-- 주문 번호
+	qty			int		not null,
     bid			char(8),
     mid			char(5),
-    order_date	datetime,
-    delivery	datetime,
-	constraint fk_bid_book_market_cart foreign key(bid)
-		references book_market_books(bid),
-     constraint fk_mid_book_market_member foreign key(mid)
-		references book_market_member(mid)
+    cdate		datetime,
+    delivery	date,
+	 constraint fk_book_market_member foreign key(mid) 
+									references book_market_member(mid)
+                                    on update cascade
+                                    on delete cascade,
+    constraint fk_book_market_books foreign key(bid) 
+									references book_market_books(bid)
+                                    on update cascade
+                                    on delete cascade    
 );
 
-drop table book_market_cart;
-drop trigger trg_book_market_books;
+drop table book_market_member;
+drop trigger trg_book_market_cart_qty;
 
 -- delimiter $$
 -- create trigger trg_book_market_books
@@ -87,6 +93,30 @@ set new.mid = concat('M', LPAD(max_code + 1 , 4, '0'));
 end $$
 delimiter ;
 
+/************************************************/
+delimiter $$
+create trigger trg_book_market_cart_qty
+before insert on book_market_cart -- 테이블명
+for each row
+begin
+declare max_code int;
+
+-- 현재 저장된 값 중 가장 큰 값을 가져옴
+SELECT IFNULL(MAX(qty),0)
+INTO max_code
+FROM book_market_cart
+WHERE mid = ''; 
+
+SET NEW.qty = (max_code+1);
+
+end $$
+delimiter ;
+/************************************************/
+
+
+
+
+
 
 
 select * from information_schema.triggers;
@@ -116,6 +146,7 @@ select * from book_market_cart;
 select a.bid, count(a.bid) as count, sum(b.price) as price
 from book_market_cart a inner join book_market_books b 
 on a.bid = b.bid
+where a.mid = 'M0002'
 group by a.bid;
 
 select su.sname
@@ -126,3 +157,46 @@ where st.sname = '홍길동';
 truncate table book_market_member;
 select * from book_market_member; 
 show tables;
+
+ update book_market_cart set qty = qty +1 where bid = 'ISBN0003' and mid = 'M0002';
+insert into book_market_cart(bid, mid) values('ISBN0003','M0002');
+select order_id, qty, bid, mid, cdate, delivery from book_market_cart where mid = 'M0007';
+
+select * from book_market_member ;
+
+select * from book_market_cart where mid = 'M0015';
+
+delete from book_market_cart where bid = 'ISBN0003';
+
+
+select a.bid, sum(a.qty) as sum, sum(b.price*a.qty) as price 
+from book_market_cart a inner join book_market_books b 
+on a.bid = b.bid
+where a.mid = 'M0012'
+group by a.bid;
+
+select curdate() from dual;
+insert into book_market_member(name, phone, addr, mdate) values('i','45155','경북', curdate());
+
+select mid from book_market_member
+				order by mdate desc
+				limit 1;
+
+select a.bid, sum(a.qty) as sum, sum(b.price*a.qty) as price
+from book_market_cart a inner join book_market_books b
+on a.bid = b.bid
+where a.mid = (select mid from book_market_member
+				order by mdate desc
+				limit 1)
+group by a.bid;
+
+
+select bid, title, author, price, category, content, bdate from book_market_books where bid = 'ISBN000';
+
+select order_id, qty, bid, mid, cdate, delivery from book_market_cart where mid = 
+(select mid from book_market_member
+				order by mdate desc
+				limit 1);
+
+update book_market_member set name = '김아무개', phone = '01022221111', addr = '경상북도 김천시' where mid = 'm0001';
+

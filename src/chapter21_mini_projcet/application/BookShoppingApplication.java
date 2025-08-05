@@ -12,8 +12,8 @@ public class BookShoppingApplication {
 	public static final int REGISTER = 2;
 	public static final int LIST = 3;
 	public static final int UPDATE = 4;
-	public static final int DELETE = 5;
-	public static final int DELETE_ALL = 6;
+	public static final int DELETE_ALL = 5;
+	public static final int DELETE = 6;
 	public static final int RECEIPT = 7;
 	public static final int EXIT = 8;
 	public String phone, name = null;
@@ -30,12 +30,9 @@ public class BookShoppingApplication {
 	 * 고객 등록
 	 * */
 	public void insertInfo() {
-		MemberVo member = new MemberVo();
-		System.out.print("당신의 이름을 입력하세요 : ");
-		member.setName(scan.next());
-		System.out.print("연락처를 입력하세요 : ");
-		member.setPhone(scan.next());
-		service.insert(member);
+		
+		System.out.println("회원등록을 하시고 쇼핑을 진행해 주세요~!");
+		service.menuMemberAdd();
 	}
 	
 	/**
