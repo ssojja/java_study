@@ -18,7 +18,6 @@ public class BookShoppingApplication {
 	public static final int EXIT = 8;
 	public String phone, name = null;
 	
-	
 	public BookShoppingApplication() {
 		scan = new Scanner(System.in);
 		service = new ShoppingServiceImpl(this);
