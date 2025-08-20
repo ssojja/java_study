@@ -2,7 +2,6 @@ package chapter21_mini_projcet.application;
 
 import java.util.Scanner;
 
-import chapter21_mini_projcet.model.MemberVo;
 import chapter21_mini_projcet.service.ShoppingServiceImpl;
 
 public class BookShoppingApplication {
